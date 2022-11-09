@@ -106,7 +106,22 @@
 		this.next = null;
 	}
 }
-
+let head;
+function push(head_ref,new_data)
+	{
+		/* allocate node */
+	let new_node = new Node();
+	
+	/* put in the data */
+	new_node.data = new_data;
+	
+	/* link the old list to the new node */
+	new_node.next = head_ref;
+	
+	/* move the head to point to the new node */
+	head_ref = new_node;
+	head = head_ref;
+	}
 // Deletes middle node and returns
 // head of the modified list
 function deleteMid( head)
@@ -160,14 +175,6 @@ function printList(ptr)
     document.getElementById("deleted").value = element;
     
 }
-function newNode(data)
-{
-	temp = new Node();
-	temp.data = data;
-	temp.next = null;
-	return temp;
-}
-
 function out(){
             document.getElementById("deleted").style.visibility = 'visible';
             const array = arrayInput(document.getElementById('array-input').value);
@@ -177,13 +184,11 @@ function out(){
                 return;
             }
             document.getElementById("input-error").style.visibility = 'hidden';
-
-            head = newNode(array[0]);
-            head.next = newNode(array[1]);
-            head.next.next = newNode(array[2]);
-            head.next.next.next = newNode(array[3]);
-            head.next.next.next.next = newNode(array[4]);
-
+            if(head==null){
+            for(var i=array.length-1; i>=0; i--){
+            push(head, array[i]);
+           }
+          }
             printList(head);
             head = deleteMid(head);
             printList(head);
