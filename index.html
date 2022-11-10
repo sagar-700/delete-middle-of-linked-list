@@ -74,6 +74,13 @@
         .input-error {
             color: red;
         }
+        @media screen and (max-width: 600px) {
+          .container-wrap {
+          height: 60vh;
+          width: 80vh;
+        }
+  
+}
       </style>
 </head>
 <body>
@@ -109,21 +116,15 @@
 let head;
 function push(head_ref,new_data)
 	{
-		/* allocate node */
 	let new_node = new Node();
 	
-	/* put in the data */
 	new_node.data = new_data;
 	
-	/* link the old list to the new node */
 	new_node.next = head_ref;
 	
-	/* move the head to point to the new node */
 	head_ref = new_node;
 	head = head_ref;
 	}
-// Deletes middle node and returns
-// head of the modified list
 function deleteMid( head)
 {
 	// Base cases
@@ -134,16 +135,11 @@ function deleteMid( head)
 		return null;
 	}
 
-	// Initialize slow and fast pointers
-	// to reach middle of linked list
 	var slow_ptr = head;
 	var fast_ptr = head;
 
-	// Find the middle and previous of
-	// middle.
 	var prev = null;
 
-	// To store previous of slow_ptr
 	while (fast_ptr != null &&
 		fast_ptr.next != null)
 	{
@@ -152,14 +148,11 @@ function deleteMid( head)
 		slow_ptr = slow_ptr.next;
 	}
 
-	// Delete the middle node
 	prev.next = slow_ptr.next;
 
 	return head;
 }
 
-// A utility function to print
-// a given linked list
 
 function printList(ptr)
 {
